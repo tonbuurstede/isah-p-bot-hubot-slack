@@ -10,6 +10,36 @@
 
 module.exports = (robot) ->
 
+   robot.hear /stabiel/i, (res) ->
+     res.send "Stabiel? STABIEL? ONZE SOFTWARE IS NOG NOOIT ZO STABIEL GEWEEST!"
+  
+   robot.hear /werken/i, (res) ->
+     res.send "Werken? D'r werkt er hier maar ene!"
+  
+   robot.respond /biertje/i, (res) ->
+     # Get number of beers had (coerced to a number).
+     beersHad = robot.brain.get('totalBeers') * 1 or 0
+  
+     if beersHad > 3
+       res.reply "'t is weer tijd voor friet van ons Aniet!"
+     else
+       if beersHad > 2
+         res.reply "Nog ene met de jas aan!"
+       else
+         if beersHad > 1
+           res.reply "De laatste dan!"
+         else
+           if beersHad > 0
+             res.reply "Op een been kun de nie lopen!"
+           else
+             res.reply 'Lekker!'
+    
+     robot.brain.set 'totalBeers', beersHad+1
+  
+   robot.respond /koffie/i, (res) ->
+     robot.brain.set 'totalBeers', 0
+     res.reply 'Breng er voor mij ook eentje mee?'
+
   # robot.hear /badger/i, (res) ->
   #   res.send "Badgers? BADGERS? WE DON'T NEED NO STINKIN BADGERS"
   #
