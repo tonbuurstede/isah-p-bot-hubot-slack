@@ -24,7 +24,7 @@ module.exports = (robot) ->
        res.reply "'t is weer tijd voor friet van ons Aniet!"
      else
        if beersHad > 2
-         res.reply "Nog ene met de jas aan!"
+         res.reply "Nog ene dan, met de jas aan!"
        else
          if beersHad > 1
            res.reply "De laatste dan!"
